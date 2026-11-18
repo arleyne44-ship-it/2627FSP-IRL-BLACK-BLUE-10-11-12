@@ -1,0 +1,1791 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Little Lab — Team 12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink:#ff6cab;
+  --purple:#a78bfa;
+  --cyan:#52e4f5;
+  --dark:#11101c;
+  --muted:#aaa7bb;
+  --line:#ffffff20;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  background:var(--dark);
+  color:#fff;
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
+
+button { font:inherit; cursor:pointer; }
+
+nav {
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:17px 7%;
+  background:#11101cef;
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+
+.logo { font-weight:700; letter-spacing:2px; }
+.logo span { color:var(--pink); }
+
+.nav-links {
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a {
+  color:#d0ccdc;
+  text-decoration:none;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+.nav-links a:hover { color:var(--pink); }
+
+.hero {
+  min-height:84vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:75px 20px;
+  background:
+    radial-gradient(circle at 18% 25%,#743b8055,transparent 37%),
+    radial-gradient(circle at 82% 75%,#245e7555,transparent 40%);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before,.hero:after {
+  content:"";
+  position:absolute;
+  border:1px solid #ffffff12;
+  border-radius:50%;
+  width:370px;
+  height:370px;
+  pointer-events:none;
+}
+
+.hero:before { left:-190px; top:8%; }
+.hero:after { right:-190px; bottom:-15%; }
+
+.hero-inner { position:relative; z-index:1; }
+
+.tag,.eyebrow {
+  color:var(--cyan);
+  font-size:11px;
+  letter-spacing:4px;
+  margin-bottom:22px;
+}
+
+.hero h1 {
+  font:700 clamp(60px,10vw,118px)/1.02 'Playfair Display',serif;
+}
+
+.gradient {
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p {
+  max-width:570px;
+  color:var(--muted);
+  line-height:1.9;
+  margin:25px auto 30px;
+}
+
+.btn {
+  display:inline-block;
+  border:0;
+  border-radius:50px;
+  padding:13px 23px;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+  transition:.25s;
+}
+
+.btn:hover {
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px #a78bfa40;
+}
+
+.section { padding:88px 8%; }
+
+.section-head {
+  max-width:720px;
+  margin-bottom:38px;
+}
+
+.eyebrow {
+  color:var(--pink);
+  margin-bottom:13px;
+}
+
+.section h2 {
+  font:700 clamp(35px,5vw,54px)/1.1 'Playfair Display',serif;
+  margin-bottom:17px;
+}
+
+.desc {
+  color:var(--muted);
+  line-height:1.85;
+  max-width:680px;
+}
+
+/* VIDEO */
+
+.video-section {
+  background:#171525;
+  text-align:center;
+}
+
+.video-section .section-head {
+  margin:0 auto 35px;
+}
+
+.video-frame {
+  max-width:960px;
+  margin:auto;
+  aspect-ratio:16/9;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 25px 70px #0005;
+}
+
+.video-frame iframe {
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+/* MEMBER LIST */
+
+.team-section { background:#11101c; }
+
+.team-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px;
+}
+
+.member-card {
+  background:linear-gradient(160deg,#ffffff0b,#ffffff04);
+  border:1px solid var(--line);
+  border-radius:24px;
+  overflow:hidden;
+  transition:.3s;
+}
+
+.member-card:hover {
+  transform:translateY(-7px);
+  border-color:#ff6cab70;
+}
+
+.member-photo {
+  height:300px;
+  background:#203d7d;
+  display:flex;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.member-photo img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 28%;
+}
+
+.member-content { padding:25px; }
+
+.member-number {
+  color:var(--cyan);
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.member-content h3 {
+  font:700 25px 'Playfair Display',serif;
+  margin:8px 0;
+}
+
+.role {
+  font-size:10px;
+  letter-spacing:1.5px;
+  color:var(--pink);
+  font-weight:700;
+  margin-bottom:17px;
+}
+
+.member-content p {
+  font-size:13px;
+  color:#c5c1d1;
+  line-height:1.85;
+}
+
+.interest-chips {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:18px 0 20px;
+}
+
+.chip {
+  font-size:10px;
+  color:#e8e3f1;
+  background:#ffffff0c;
+  border:1px solid var(--line);
+  padding:7px 10px;
+  border-radius:30px;
+}
+
+.profile-btn {
+  width:100%;
+  background:#ffffff0c;
+  border:1px solid #ffffff25;
+  color:#fff;
+  border-radius:12px;
+  padding:12px;
+  font-weight:700;
+}
+
+.profile-btn:hover {
+  background:#ff6cab20;
+  border-color:var(--pink);
+}
+
+.decor-strip {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-top:27px;
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+.decor-strip .line {
+  height:1px;
+  background:linear-gradient(90deg,var(--pink),transparent);
+  flex:1;
+}
+
+/* MEMBER PROFILE POP-UP */
+
+.member-modal {
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:#05040bd9;
+  backdrop-filter:blur(12px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+}
+
+.member-modal.show {
+  opacity:1;
+  visibility:visible;
+}
+
+.member-modal-panel {
+  position:relative;
+  width:min(820px,100%);
+  max-height:88vh;
+  overflow-y:auto;
+  background:linear-gradient(145deg,#211d35,#171525);
+  border:1px solid #ffffff25;
+  border-radius:26px;
+  padding:36px;
+  box-shadow:0 30px 100px #0009;
+  transform:translateY(18px);
+  transition:.25s;
+}
+
+.member-modal.show .member-modal-panel {
+  transform:translateY(0);
+}
+
+.modal-close {
+  position:sticky;
+  float:right;
+  top:0;
+  margin:-15px -12px 0 12px;
+  width:40px;
+  height:40px;
+  border:1px solid #ffffff25;
+  border-radius:50%;
+  background:#ffffff12;
+  color:white;
+  font-size:27px;
+  line-height:1;
+}
+
+.modal-kicker {
+  font-size:10px;
+  letter-spacing:3px;
+  color:var(--cyan);
+  margin:8px 0 14px;
+}
+
+.member-modal-panel h2 {
+  font:700 clamp(28px,5vw,42px) 'Playfair Display',serif;
+  margin-bottom:8px;
+}
+
+.modal-subtitle {
+  color:var(--pink);
+  font-size:11px;
+  letter-spacing:1.5px;
+  font-weight:700;
+  margin-bottom:22px;
+}
+
+.modal-intro {
+  font-size:13px;
+  line-height:1.9;
+  color:#d1cede;
+  margin-bottom:22px;
+}
+
+.member-quote {
+  border-left:3px solid var(--pink);
+  padding:13px 17px;
+  background:#ffffff08;
+  border-radius:0 12px 12px 0;
+  color:#e8dff4;
+  font:italic 16px 'Playfair Display',serif;
+  margin-bottom:25px;
+}
+
+.modal-detail-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+}
+
+.modal-detail-card {
+  background:#ffffff08;
+  border:1px solid #ffffff15;
+  border-radius:16px;
+  padding:18px;
+}
+
+.detail-icon { font-size:23px; }
+
+.modal-detail-card h3 {
+  font-size:13px;
+  color:var(--cyan);
+  margin:9px 0;
+}
+
+.modal-detail-card ul {
+  padding-left:17px;
+  color:#c9c4d4;
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* GAMES */
+
+.game-section {
+  background:radial-gradient(circle at 90% 10%,#55347530,transparent 40%),#171525;
+}
+
+.games-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+  align-items:stretch;
+}
+
+.game-card {
+  background:#ffffff07;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:25px;
+  min-width:0;
+}
+
+.game-top {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  margin-bottom:20px;
+}
+
+.game-kicker {
+  font-size:10px;
+  color:var(--pink);
+  letter-spacing:2px;
+}
+
+.game-card h3 {
+  font:700 27px 'Playfair Display',serif;
+  margin:7px 0;
+}
+
+.game-card .hint {
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.game-stat {
+  text-align:right;
+  white-space:nowrap;
+}
+
+.game-stat small {
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+.game-stat strong {
+  display:block;
+  font-size:20px;
+  margin-top:4px;
+  color:var(--cyan);
+}
+
+/* JIGSAW */
+
+.puzzle-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 145px;
+  gap:15px;
+  align-items:start;
+}
+
+.board {
+  width:100%;
+  aspect-ratio:1;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border:2px solid #ffffff25;
+  border-radius:12px;
+  overflow:hidden;
+  background:#1c1a2c;
+}
+
+.slot {
+  border:1px dashed #ffffff25;
+  min-width:0;
+  min-height:0;
+}
+
+.slot.over { background:#ff6cab30; }
+.slot.correct { border:1px solid var(--cyan); }
+
+.piece {
+  width:100%;
+  height:100%;
+  background-size:300% 300%;
+  border:1px solid #11101c;
+  cursor:grab;
+}
+
+.piece.placed { cursor:default; }
+
+.tray {
+  background:#ffffff06;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:12px;
+}
+
+.tray h4 {
+  font-size:10px;
+  letter-spacing:1.5px;
+  margin-bottom:11px;
+}
+
+.pieces {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+}
+
+.pieces .piece {
+  aspect-ratio:1;
+  border-radius:4px;
+}
+
+.game-btn {
+  width:100%;
+  padding:10px 8px;
+  margin-top:9px;
+  border:0;
+  border-radius:9px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.shuffle {
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  color:white;
+}
+
+.reset {
+  background:#ffffff12;
+  color:white;
+}
+
+.game-status {
+  min-height:35px;
+  text-align:center;
+  margin-top:14px;
+  color:var(--cyan);
+  font-size:11px;
+  line-height:1.6;
+}
+
+/* MEMORY MATCH */
+
+.memory-board {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+  max-width:430px;
+  margin:0 auto;
+}
+
+.memory-card {
+  aspect-ratio:1;
+  border:1px solid #ffffff25;
+  border-radius:12px;
+  background:linear-gradient(145deg,#30294a,#201d32);
+  color:white;
+  font-size:clamp(20px,3vw,31px);
+  display:grid;
+  place-items:center;
+  transition:.2s;
+  user-select:none;
+}
+
+.memory-card:hover { transform:translateY(-2px); }
+
+.memory-card.flipped,
+.memory-card.matched {
+  background:linear-gradient(135deg,#4b2c60,#214d61);
+  border-color:var(--cyan);
+}
+
+.memory-card.matched {
+  opacity:.65;
+  cursor:default;
+}
+
+.memory-controls {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:15px;
+}
+
+.memory-controls button {
+  padding:10px 18px;
+  border-radius:30px;
+  border:1px solid #ffffff25;
+  background:#ffffff10;
+  color:white;
+  font-size:11px;
+  font-weight:700;
+}
+
+/* CLOSING */
+
+.experience {
+  text-align:center;
+  background:#11101c;
+}
+
+.experience p {
+  color:var(--muted);
+  max-width:650px;
+  margin:0 auto;
+  line-height:1.9;
+}
+
+.experience .btn { margin-top:25px; }
+
+footer {
+  text-align:center;
+  padding:30px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px) {
+  .team-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .games-grid { grid-template-columns:1fr; }
+  .game-card { max-width:700px; width:100%; margin:auto; }
+}
+
+@media(max-width:620px) {
+  nav {
+    padding:15px 5%;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .nav-links {
+    gap:9px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .nav-links a { font-size:9px; }
+  .section { padding:65px 5%; }
+  .team-grid { grid-template-columns:1fr; }
+  .member-photo { height:340px; }
+
+  .puzzle-layout {
+    grid-template-columns:minmax(0,1fr) 118px;
+  }
+
+  .game-card { padding:17px; }
+  .game-top { flex-wrap:wrap; }
+  .memory-board { gap:7px; }
+
+  .member-modal { padding:10px; }
+
+  .member-modal-panel {
+    padding:23px 18px;
+    max-height:92vh;
+  }
+
+  .modal-detail-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">THE LITTLE <span>LAB.</span></div>
+
+  <div class="nav-links">
+    <a href="#home">HOME</a>
+    <a href="#video">OUR STORY</a>
+    <a href="#team">TEAM</a>
+    <a href="#game">GAMES</a>
+    <a href="#experience">END</a>
+  </div>
+</nav>
+
+<!-- HOME / HEADLINE -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="tag">TEAM 12 · CREATIVE LAB</div>
+
+    <h1>
+      The Little<br>
+      <span class="gradient">Lab.</span>
+    </h1>
+
+    <p>
+      Three curious minds, endless ideas, and a little world
+      where science, creativity, and imagination meet.
+      Step inside, get to know us, and play along!
+    </p>
+
+    <a href="#video" class="btn">EXPLORE OUR WORLD ↓</a>
+  </div>
+</section>
+
+<!-- VIDEO: HALAMAN KEDUA -->
+<section class="section video-section" id="video">
+  <div class="section-head">
+    <div class="eyebrow">A LITTLE INTRODUCTION</div>
+
+    <h2>Inside Our Little World.</h2>
+
+    <p class="desc">
+      Every great idea begins with curiosity.
+      Here is a glimpse of our journey, the things we create,
+      and the memories we share as Team 12.
+    </p>
+  </div>
+
+  <div class="video-frame">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/bOuEJf8Dr_4"
+      title="Team 12 Video"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<!-- MEMBER LIST -->
+<section class="section team-section" id="team">
+  <div class="section-head">
+    <div class="eyebrow">THE PEOPLE BEHIND THE LAB</div>
+
+    <h2>Meet Our Team.</h2>
+
+    <p class="desc">
+      Different personalities, different ways of thinking,
+      and different fields of interest. What brings us together
+      is the excitement of learning, experimenting, and turning
+      ideas into something meaningful.
+    </p>
+  </div>
+
+  <div class="team-grid">
+
+    <!-- YOHANA -->
+    <article class="member-card">
+      <div class="member-photo">
+        <img src="yohana.jpeg" alt="Yohana">
+      </div>
+
+      <div class="member-content">
+        <div class="member-number">01 / THE BIO EXPLORER</div>
+
+        <h3>Yohana Laurel Setiawan</h3>
+
+        <div class="role">BIOTECH & FOOD TECH ENTHUSIAST</div>
+
+        <p>
+          Yohana is drawn to the science hidden in everyday life.
+          From biotechnology to food development, she enjoys
+          discovering how scientific breakthroughs can create
+          meaningful impact. Her curiosity focuses on ideas that
+          connect science with real-world needs.
+        </p>
+
+        <div class="interest-chips">
+          <span class="chip">🧬 Biotechnology</span>
+          <span class="chip">🥗 Food Technology</span>
+          <span class="chip">🔎 Research</span>
+        </div>
+
+        <button class="profile-btn" type="button" data-member="yohana">
+          VIEW FULL PROFILE ↗
+        </button>
+      </div>
+    </article>
+
+    <!-- MARTA -->
+    <article class="member-card">
+      <div class="member-photo">
+        <img src="marta.jpeg" alt="Marta">
+      </div>
+
+      <div class="member-content">
+        <div class="member-number">02 / THE FOOD SCIENTIST</div>
+
+        <h3>Marta Caroline</h3>
+
+        <div class="role">CHEMISTRY & FOOD SCIENCE</div>
+
+        <p>
+          Marta loves looking beyond the surface and asking what
+          makes things work. Her interest in chemistry and food
+          science leads her to explore reactions, ingredients,
+          and processes behind familiar products. She enjoys
+          turning simple questions into discoveries.
+        </p>
+
+        <div class="interest-chips">
+          <span class="chip">⚗️ Chemistry</span>
+          <span class="chip">🍓 Food Science</span>
+          <span class="chip">🧫 Lab Exploration</span>
+        </div>
+
+        <button class="profile-btn" type="button" data-member="marta">
+          VIEW FULL PROFILE ↗
+        </button>
+      </div>
+    </article>
+
+    <!-- JOVANKA -->
+    <article class="member-card">
+      <div class="member-photo">
+        <img src="jovanka.jpeg" alt="Jovanka">
+      </div>
+
+      <div class="member-content">
+        <div class="member-number">03 / THE IDEA MAKER</div>
+
+        <h3>Jovanka Leony Singgih</h3>
+
+        <div class="role">SCIENCE & INNOVATION</div>
+
+        <p>
+          Jovanka enjoys connecting analytical thinking with
+          imagination. With interests spanning mathematics,
+          leadership, and innovation, she likes exploring
+          challenges from different angles and developing
+          ideas into purposeful projects.
+        </p>
+
+        <div class="interest-chips">
+          <span class="chip">➗ Mathematics</span>
+          <span class="chip">💡 Innovation</span>
+          <span class="chip">🧠 Problem Solving</span>
+        </div>
+
+        <button class="profile-btn" type="button" data-member="jovanka">
+          VIEW FULL PROFILE ↗
+        </button>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="decor-strip">
+    <span>✦</span>
+    <div class="line"></div>
+    <span>THREE MINDS, ONE LITTLE LAB</span>
+    <div class="line"></div>
+    <span>✦</span>
+  </div>
+</section>
+
+<!-- MEMBER PROFILE POP-UP -->
+<div class="member-modal" id="memberModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="member-modal-panel">
+
+    <button class="modal-close" id="closeMemberModal" type="button" aria-label="Close profile">
+      ×
+    </button>
+
+    <div id="memberModalContent"></div>
+
+  </div>
+</div>
+
+<!-- GAMES -->
+<section class="section game-section" id="game">
+
+  <div class="section-head">
+    <div class="eyebrow">THE LITTLE ARCADE</div>
+
+    <h2>Think. Match. Play.</h2>
+
+    <p class="desc">
+      Take a short break in our lab! Put the picture back together
+      in the jigsaw puzzle, then test your memory by finding
+      matching pairs.
+    </p>
+  </div>
+
+  <div class="games-grid">
+
+    <!-- GAME 1: JIGSAW -->
+    <section class="game-card">
+
+      <div class="game-top">
+        <div>
+          <div class="game-kicker">GAME 01 / JIGSAW</div>
+
+          <h3>Piece It Together.</h3>
+
+          <p class="hint">
+            Drag each piece into its matching square
+            to reveal the artwork.
+          </p>
+        </div>
+
+        <div class="game-stat">
+          <small>PIECES</small>
+          <strong id="puzzleProgress">0 / 9</strong>
+        </div>
+      </div>
+
+      <div class="puzzle-layout">
+
+        <div class="board" id="puzzleBoard">
+          <div class="slot" data-slot="0"></div>
+          <div class="slot" data-slot="1"></div>
+          <div class="slot" data-slot="2"></div>
+          <div class="slot" data-slot="3"></div>
+          <div class="slot" data-slot="4"></div>
+          <div class="slot" data-slot="5"></div>
+          <div class="slot" data-slot="6"></div>
+          <div class="slot" data-slot="7"></div>
+          <div class="slot" data-slot="8"></div>
+        </div>
+
+        <div class="tray">
+          <h4>PUZZLE PIECES</h4>
+
+          <div class="pieces" id="puzzlePieces"></div>
+
+          <button class="game-btn shuffle" id="shufflePuzzle">
+            🔀 SHUFFLE
+          </button>
+
+          <button class="game-btn reset" id="resetPuzzle">
+            ↻ RESTART
+          </button>
+        </div>
+
+      </div>
+
+      <div class="game-status" id="puzzleStatus" aria-live="polite">
+        Ready, researcher? 🧪
+      </div>
+
+    </section>
+
+    <!-- GAME 2: MEMORY MATCH -->
+    <section class="game-card">
+
+      <div class="game-top">
+        <div>
+          <div class="game-kicker">GAME 02 / MEMORY MATCH</div>
+
+          <h3>Find the Twins.</h3>
+
+          <p class="hint">
+            Flip two cards at a time. Remember their places
+            and find all six matching pairs!
+          </p>
+        </div>
+
+        <div class="game-stat">
+          <small>MATCHED</small>
+          <strong id="matchProgress">0 / 6</strong>
+        </div>
+      </div>
+
+      <div class="memory-board" id="memoryBoard"></div>
+
+      <div class="game-status" id="memoryStatus" aria-live="polite">
+        Find a pair to get started ✨
+      </div>
+
+      <div class="memory-controls">
+        <button type="button" id="newMemoryGame">
+          ↻ NEW GAME
+        </button>
+      </div>
+
+    </section>
+
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="section experience" id="experience">
+
+  <div class="eyebrow">THE EXPERIENCE</div>
+
+  <h2>Curiosity Never Ends.</h2>
+
+  <p>
+    Thank you for visiting our little corner of the internet.
+    We hope you enjoyed getting to know the people behind
+    The Little Lab. Keep exploring, keep asking questions,
+    and never stop being curious.
+  </p>
+
+  <a href="#home" class="btn">BACK TO THE TOP ↑</a>
+
+</section>
+
+<footer>
+  MADE WITH CURIOSITY · TEAM 12
+</footer>
+
+<script>
+
+/* =========================================
+   MEMBER PROFILE DATA
+========================================= */
+
+const memberProfiles = {
+
+  yohana: {
+    name: "Yohana Laurel Setiawan",
+
+    subtitle: "THE BIO EXPLORER · BIOTECH & FOOD TECH",
+
+    intro: "Yohana is drawn to the science hidden in everyday life. From the fascinating world of biotechnology to the way food is developed, she enjoys discovering how scientific breakthroughs can create a meaningful impact. Her curiosity makes her especially interested in exploring ideas that connect science with real-world needs.",
+
+    education: [
+      "SDK 5 BPK Penabur Guntur",
+      "SMP BPK Penabur Holis",
+      "SMA BPK Penabur Holis Bandung"
+    ],
+
+    achievements: [
+      "Food Technology Essay",
+      "Champion in IT Competition",
+      "Singing Competition Recognition"
+    ],
+
+    interests: [
+      "Biotechnology",
+      "Food Technology",
+      "Scientific Research",
+      "Science Communication"
+    ],
+
+    skills: [
+      "English Communication",
+      "Teamwork",
+      "Creativity",
+      "Research & Learning"
+    ],
+
+    quote: "Curiosity is the first step toward discovering something extraordinary."
+  },
+
+
+  marta: {
+    name: "Marta Caroline",
+
+    subtitle: "THE FOOD SCIENTIST · CHEMISTRY & FOOD SCIENCE",
+
+    intro: "Marta loves looking beyond the surface and asking what makes things work. Her interest in chemistry and food science leads her to explore the reactions, ingredients, and processes behind familiar products. She enjoys scientific exploration and learning how careful observation can turn a simple question into a new discovery.",
+
+    education: [
+      "SD Kalam Kudus",
+      "SMP Angkasa",
+      "SMA BPK Penabur Holis"
+    ],
+
+    achievements: [
+      "Food Science Essay",
+      "Champion in Chemistry Competition",
+      "Scientific Exploration"
+    ],
+
+    interests: [
+      "Chemistry",
+      "Food Science",
+      "Scientific Research",
+      "Laboratory Exploration"
+    ],
+
+    skills: [
+      "Analytical Thinking",
+      "Research",
+      "Teamwork",
+      "Scientific Learning"
+    ],
+
+    quote: "Every little detail can reveal a bigger scientific story."
+  },
+
+
+  jovanka: {
+    name: "Jovanka Leony Singgih",
+
+    subtitle: "THE IDEA MAKER · SCIENCE & INNOVATION",
+
+    intro: "Jovanka enjoys connecting analytical thinking with imagination. With interests spanning mathematics, leadership, and innovation, she likes exploring challenges from different angles and developing ideas into purposeful projects. For her, creativity is not separate from science—it is one of the ways new solutions begin.",
+
+    education: [
+      "SDK BPK Penabur Cimahi",
+      "SMPK 5 BPK Penabur",
+      "SMA BPK Penabur Holis"
+    ],
+
+    achievements: [
+      "YCMS Award Winner",
+      "Kombucha SCOBY Skincare Gel Mask Project",
+      "Development of a skincare gel mask using bacterial cellulose from Kombucha SCOBY"
+    ],
+
+    interests: [
+      "Mathematics",
+      "Innovation",
+      "Leadership",
+      "Scientific Exploration"
+    ],
+
+    skills: [
+      "Problem Solving",
+      "Creative Thinking",
+      "Teamwork",
+      "Project Development"
+    ],
+
+    quote: "A good idea grows when creativity meets thoughtful exploration."
+  }
+
+};
+
+
+/* =========================================
+   MEMBER PROFILE POP-UP FUNCTION
+========================================= */
+
+const memberModal = document.getElementById("memberModal");
+
+const memberModalContent =
+  document.getElementById("memberModalContent");
+
+
+/* HUBUNGKAN SETIAP TOMBOL DENGAN PROFILNYA */
+
+document.querySelectorAll(".profile-btn").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const memberKey = button.dataset.member;
+
+    openMemberProfile(memberKey);
+
+  });
+
+});
+
+
+function openMemberProfile(memberKey) {
+
+  const profile = memberProfiles[memberKey];
+
+  if (!profile) return;
+
+
+  const makeList = items => {
+
+    return items.map(item => `<li>${item}</li>`).join("");
+
+  };
+
+
+  memberModalContent.innerHTML = `
+
+    <div class="modal-kicker">
+      ✦ THE PEOPLE BEHIND THE LAB ✦
+    </div>
+
+    <h2>${profile.name}</h2>
+
+    <div class="modal-subtitle">
+      ${profile.subtitle}
+    </div>
+
+    <p class="modal-intro">
+      ${profile.intro}
+    </p>
+
+    <blockquote class="member-quote">
+      “${profile.quote}”
+    </blockquote>
+
+    <div class="modal-detail-grid">
+
+      <section class="modal-detail-card">
+        <span class="detail-icon">🎓</span>
+        <h3>Education Journey</h3>
+        <ul>${makeList(profile.education)}</ul>
+      </section>
+
+      <section class="modal-detail-card">
+        <span class="detail-icon">🏆</span>
+        <h3>Highlights & Achievements</h3>
+        <ul>${makeList(profile.achievements)}</ul>
+      </section>
+
+      <section class="modal-detail-card">
+        <span class="detail-icon">🔭</span>
+        <h3>Curiosity & Interests</h3>
+        <ul>${makeList(profile.interests)}</ul>
+      </section>
+
+      <section class="modal-detail-card">
+        <span class="detail-icon">✨</span>
+        <h3>Skills & Strengths</h3>
+        <ul>${makeList(profile.skills)}</ul>
+      </section>
+
+    </div>
+
+  `;
+
+
+  memberModal.classList.add("show");
+
+  memberModal.setAttribute("aria-hidden", "false");
+
+  document.body.style.overflow = "hidden";
+
+  document.getElementById("closeMemberModal").focus();
+
+}
+
+
+/* CLOSE POP-UP */
+
+function closeMemberProfile() {
+
+  memberModal.classList.remove("show");
+
+  memberModal.setAttribute("aria-hidden", "true");
+
+  document.body.style.overflow = "";
+
+}
+
+
+document.getElementById("closeMemberModal")
+  .addEventListener("click", closeMemberProfile);
+
+
+memberModal.addEventListener("click", event => {
+
+  if (event.target === memberModal) {
+
+    closeMemberProfile();
+
+  }
+
+});
+
+
+document.addEventListener("keydown", event => {
+
+  if (
+    event.key === "Escape" &&
+    memberModal.classList.contains("show")
+  ) {
+
+    closeMemberProfile();
+
+  }
+
+});
+
+
+/* =========================================
+   GAME 1: JIGSAW PUZZLE
+========================================= */
+
+const puzzleSVG = `
+
+<svg xmlns="http://www.w3.org/2000/svg"
+width="900" height="900" viewBox="0 0 900 900">
+
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#211d45"/>
+<stop offset="50%" stop-color="#7b347d"/>
+<stop offset="100%" stop-color="#172f57"/>
+</linearGradient>
+</defs>
+
+<rect width="900" height="900" fill="url(#bg)"/>
+
+<circle cx="180" cy="180" r="130"
+fill="#ff6cab" opacity=".4"/>
+
+<circle cx="720" cy="720" r="150"
+fill="#52e4f5" opacity=".3"/>
+
+<g fill="none" stroke="white" opacity=".15">
+<circle cx="450" cy="450" r="350"/>
+<circle cx="450" cy="450" r="250"/>
+<path d="M100 450H800M450 100V800"/>
+</g>
+
+<g font-family="Arial" text-anchor="middle">
+
+<text x="450" y="180" font-size="75"
+font-weight="bold" fill="white">
+THE LITTLE LAB
+</text>
+
+<text x="450" y="250" font-size="35"
+fill="#ffe27a">
+TEAM 12
+</text>
+
+<text x="450" y="530" font-size="250">🧪</text>
+
+<text x="200" y="680" font-size="130">🧬</text>
+
+<text x="700" y="680" font-size="130">🔬</text>
+
+<text x="450" y="780" font-size="40"
+fill="white">
+CURIOSITY STARTS HERE
+</text>
+
+</g>
+</svg>
+
+`;
+
+
+const puzzleImage =
+  "data:image/svg+xml;charset=utf-8," +
+  encodeURIComponent(puzzleSVG);
+
+
+const puzzlePieces =
+  document.getElementById("puzzlePieces");
+
+const puzzleSlots =
+  document.querySelectorAll(".slot");
+
+let puzzleCorrect = 0;
+
+
+function createPuzzle() {
+
+  puzzlePieces.innerHTML = "";
+
+
+  for (let i = 0; i < 9; i++) {
+
+    const piece = document.createElement("div");
+
+    piece.className = "piece";
+
+    piece.draggable = true;
+
+    piece.dataset.piece = i;
+
+    piece.style.backgroundImage =
+      `url("${puzzleImage}")`;
+
+    piece.style.backgroundPosition =
+      `${(i % 3) * 50}% ${Math.floor(i / 3) * 50}%`;
+
+
+    piece.addEventListener("dragstart", event => {
+
+      if (piece.classList.contains("placed")) {
+
+        event.preventDefault();
+
+        return;
+
+      }
+
+      event.dataTransfer.setData(
+        "text/plain",
+        piece.dataset.piece
+      );
+
+    });
+
+
+    puzzlePieces.appendChild(piece);
+
+  }
+
+
+  puzzleSlots.forEach(slot => {
+
+    slot.addEventListener("dragover", event => {
+
+      event.preventDefault();
+
+      slot.classList.add("over");
+
+    });
+
+
+    slot.addEventListener("dragleave", () => {
+
+      slot.classList.remove("over");
+
+    });
+
+
+    slot.addEventListener("drop", event => {
+
+      event.preventDefault();
+
+      slot.classList.remove("over");
+
+
+      const pieceId = Number(
+        event.dataTransfer.getData("text/plain")
+      );
+
+      const slotId = Number(slot.dataset.slot);
+
+      const piece = document.querySelector(
+        `.piece[data-piece="${pieceId}"]`
+      );
+
+
+      if (
+        !piece ||
+        piece.classList.contains("placed") ||
+        slot.children.length
+      ) {
+
+        return;
+
+      }
+
+
+      if (pieceId === slotId) {
+
+        slot.appendChild(piece);
+
+        piece.classList.add("placed");
+
+        slot.classList.add("correct");
+
+        puzzleCorrect++;
+
+
+        document.getElementById("puzzleProgress")
+          .textContent = `${puzzleCorrect} / 9`;
+
+
+        document.getElementById("puzzleStatus")
+          .textContent =
+
+          puzzleCorrect === 9
+            ? "🎉 Puzzle completed! Brilliant work!"
+            : "Correct piece! Keep going ✨";
+
+      } else {
+
+        document.getElementById("puzzleStatus")
+          .textContent = "Not quite! Try another square 🧩";
+
+      }
+
+    });
+
+  });
+
+
+  shufflePuzzle();
+
+}
+
+
+function shufflePuzzle() {
+
+  puzzleCorrect = 0;
+
+  document.getElementById("puzzleProgress")
+    .textContent = "0 / 9";
+
+  document.getElementById("puzzleStatus")
+    .textContent = "Let's complete the picture! 🧪";
+
+
+  puzzleSlots.forEach(slot => {
+
+    slot.classList.remove("correct", "over");
+
+    while (slot.firstChild) {
+
+      puzzlePieces.appendChild(slot.firstChild);
+
+    }
+
+  });
+
+
+  const pieces = [
+    ...puzzlePieces.querySelectorAll(".piece")
+  ];
+
+  pieces.forEach(piece => {
+
+    piece.classList.remove("placed");
+
+  });
+
+
+  // Fisher-Yates shuffle
+
+  for (let i = pieces.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [pieces[i], pieces[j]] = [pieces[j], pieces[i]];
+
+  }
+
+
+  pieces.forEach(piece => {
+
+    puzzlePieces.appendChild(piece);
+
+  });
+
+}
+
+
+document.getElementById("shufflePuzzle")
+  .addEventListener("click", shufflePuzzle);
+
+document.getElementById("resetPuzzle")
+  .addEventListener("click", shufflePuzzle);
+
+
+createPuzzle();
+
+
+/* =========================================
+   GAME 2: MEMORY MATCH
+========================================= */
+
+const memorySymbols = [
+  "🧬",
+  "🧪",
+  "🔬",
+  "🧫",
+  "⚗️",
+  "🧠"
+];
+
+
+const memoryBoard =
+  document.getElementById("memoryBoard");
+
+
+let firstCard = null;
+
+let secondCard = null;
+
+let lockBoard = false;
+
+let matches = 0;
+
+let moves = 0;
+
+let mismatchTimer = null;
+
+
+function startMemoryGame() {
+
+  clearTimeout(mismatchTimer);
+
+  firstCard = null;
+
+  secondCard = null;
+
+  lockBoard = false;
+
+  matches = 0;
+
+  moves = 0;
+
+
+  document.getElementById("matchProgress")
+    .textContent = "0 / 6";
+
+  document.getElementById("memoryStatus")
+    .textContent = "Find a pair to get started ✨";
+
+
+  memoryBoard.innerHTML = "";
+
+
+  const deck = [
+    ...memorySymbols,
+    ...memorySymbols
+  ];
+
+
+  // Fisher-Yates shuffle
+
+  for (let i = deck.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+
+  }
+
+
+  deck.forEach((symbol, index) => {
+
+    const card = document.createElement("button");
+
+    card.type = "button";
+
+    card.className = "memory-card";
+
+    card.textContent = "?";
+
+    card.setAttribute(
+      "aria-label",
+      `Hidden card ${index + 1}`
+    );
+
+    card.dataset.symbol = symbol;
+
+
+    card.addEventListener("click", () => {
+
+      flipMemoryCard(card);
+
+    });
+
+
+    memoryBoard.appendChild(card);
+
+  });
+
+}
+
+
+function flipMemoryCard(card) {
+
+  if (
+    lockBoard ||
+    card.classList.contains("flipped") ||
+    card.classList.contains("matched")
+  ) {
+
+    return;
+
+  }
+
+
+  card.classList.add("flipped");
+
+  card.textContent = card.dataset.symbol;
+
+  card.setAttribute(
+    "aria-label",
+    `Card ${card.dataset.symbol}`
+  );
+
+
+  if (!firstCard) {
+
+    firstCard = card;
+
+    return;
+
+  }
+
+
+  secondCard = card;
+
+  moves++;
+
+
+  // Jika kedua gambar sama
+
+  if (
+    firstCard.dataset.symbol ===
+    secondCard.dataset.symbol
+  ) {
+
+    firstCard.classList.add("matched");
+
+    secondCard.classList.add("matched");
+
+    firstCard.disabled = true;
+
+    secondCard.disabled = true;
+
+
+    matches++;
+
+
+    document.getElementById("matchProgress")
+      .textContent = `${matches} / 6`;
+
+
+    document.getElementById("memoryStatus")
+      .textContent =
+
+      matches === 6
+        ? `🎉 All pairs found in ${moves} moves!`
+        : "A match! Great memory 🌟";
+
+
+    firstCard = null;
+
+    secondCard = null;
+
+  } else {
+
+    // Jika gambar tidak sama
+
+    lockBoard = true;
+
+
+    document.getElementById("memoryStatus")
+      .textContent = "Not a match. Remember their places!";
+
+
+    mismatchTimer = setTimeout(() => {
+
+      [firstCard, secondCard].forEach(cardToHide => {
+
+        cardToHide.classList.remove("flipped");
+
+        cardToHide.textContent = "?";
+
+        cardToHide.setAttribute(
+          "aria-label",
+          "Hidden card"
+        );
+
+      });
+
+
+      firstCard = null;
+
+      secondCard = null;
+
+      lockBoard = false;
+
+    }, 850);
+
+  }
+
+}
+
+
+document.getElementById("newMemoryGame")
+  .addEventListener("click", startMemoryGame);
+
+
+startMemoryGame();
+
+</script>
+
+</body>
+</html>
